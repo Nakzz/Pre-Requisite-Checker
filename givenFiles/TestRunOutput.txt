@@ -1,0 +1,75 @@
+Alexis-MacBook-Air:P3 alexi$ ./a.out
+WELCOME TO THE PREREQ-CHECKER
+Classlist: UWMadison
+UWMadison
+Size:  44
+ User Experience Design II	612	3
+ Introduction to Computational Statistics	471	3
+ Computer Graphics	559	3
+ Technology of Computer-based Business Systems	371	3
+ Problem Solving Using Computers	310	3
+ Introduction to the Theory and Design of Programming Languages	538	3
+ Computer Game Technology	679	3
+ Introduction to Computer Networks	640	3
+ Introduction to Algorithms	577	4
+ Introduction to Human Computer Interaction	570	4
+ User Experience Design I	611	3
+ Database Management Systems	564	4
+ Introduction to Computer Architecture	552	3
+ Introduction to Operating Systems	537	4
+ Virtual Reality	579	3
+ Matrix Methods in Machine Learning	532	3
+ Introduction to Theory of Computation	520	3
+ Linear Optimization	525	3
+ Theory and Practice in Computer Science Education	502	1
+ Introduction to Bioinformatics	576	3
+ Programming I	200	3
+ Introduction to Cryptography	435	3
+ Software Engineering	506	3
+ Introduction to Numerical Methods	412	3
+ Introduction to Combinatorial Optimization	425	3
+ Introducing Computer Science to K-12 Students	402	2
+ C++ for Java Programmers	368	1
+ Numerical Linear Algebra	513	3
+ Introduction to Combinatorics	375	3
+ Introduction to Artificial Intelligence	540	3
+ Digital System Fundamentals	352	3
+ Introduction to Artificial Neural Networks and Fuzzy Systems	539	3
+ WES-CS Group Meeting	304	1
+ Programming II	300	3
+ Image Processing	533	3
+ Directed Study in Computer Science	298	3
+ Computational Photography	534	3
+ Introduction to Computer Engineering	252	2
+ Introduction to Data Programming	301	3
+ Introduction to Optimization	524	3
+ Introduction to Computation	202	3
+ Introduction to Discrete Mathematics	240	3
+ Programming III	400	3
+ Machine Organization and Programming	354	3
+Classlist: TestSchool
+TestSchool
+Size:  8
+ Graphics	260
+ Optimization	230
+ Intro to Computer Science	101
+ Software Engineering	200
+ Programming in Java	110
+ Algorithms & Formal Methods	235
+ Practicum in Software Engineering	202
+ Intro to Computation	102
+TestSchool
+Size:  8
+559	 Computer Graphics	 Graphics
+525	 Linear Optimization	 Optimization
+200	 Programming I	 Intro to Computer Science
+506	 Software Engineering	 Software Engineering
+300	 Programming II	 Programming in Java
+577	 Introduction to Algorithms	 Algorithms & Formal Methods
+Name of student: TestTransferStudent
+New student's name is: TestTransferStudent
+ Programming I: C
+ Programming II: A
+ Linear Optimization: B
+ Introduction to Algorithms: B+
+ Computer Graphics: A
