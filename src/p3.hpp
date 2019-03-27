@@ -45,3 +45,4 @@ class StudentWithTransferCredit : public Student {
     std::string getSchoolName(); //Return name of student's former school
     void printStudent(OutsideClassList& oldSchool, ClassList& newSchool); //Print student data
 };
+
