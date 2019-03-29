@@ -6,10 +6,26 @@
 #include <sstream>
 #include "p3.hpp"
 
+/**
+ * Project:    P3
+ * Authors:    Ajmain Naqib
+ *
+ * Semester:   Spring 2019
+ * Course:     CS368
+ *
+ * Due Date:   March 28th 2019
+ * Version:    1.0
+ *
+ */
+
 using namespace std;
 
-//Create a new student with the given name
 //DO NOT MODIFY THIS CONSTRUCTOR
+/**
+ * Create a new student with the given name
+ *
+ * @param name
+ */
 Student::Student(std::string name) {
 	std::ifstream ifs(name + ".txt");
 	if (!ifs.is_open()) {
@@ -29,33 +45,47 @@ Student::Student(std::string name) {
 	}
 }
 
+/**
+ * Return student's name
+ *
+ * @return name of the student
+ */
 string Student::getStudentName() {
 	return this->name;
 }
 
 /**
  * Print student data
- *TODO: finish implementing from result
+ *
+ *@param cl classlist
  */
 void Student::printStudent(ClassList& cl) {
 
+	cout << "Student's name is: " << this->name << endl;
+//	cout << this->schoolName<< endl;
+
+	string grade, className = "";
+	int courseNumber = 0;
+
 	for (auto itS = grades.begin(); itS != grades.end(); ++itS) {
 
-		auto courseNumber = itS->first;
-		auto courseName = cl.getCourseName(courseNumber);
+		courseNumber = itS->first;
+		grade = itS->second;
+		className = cl.getCourseName(courseNumber);
 
-//		cout << "	Searching for coursenum:  " << courseNumber << " found: "
-//				<< courseName << endl;
-//			if (courseNumber == it->first){
-//				cout << "returning courseName : " << it->second.first << endl; // Prints name
-//
-//			}
+		if (className != "")
+			cout << " " << className << ": " << grade << endl;
 
 	}
 
 }
 
 //DO NOT MODIFY THIS CONSTRUCTOR
+/**
+ * Load classlist info from file
+ *
+ * @param name
+ */
 ClassList::ClassList(std::string name) {
 	std::ifstream ifs(name + ".txt");
 	if (!ifs.is_open()) {
@@ -77,6 +107,10 @@ ClassList::ClassList(std::string name) {
 	}
 }
 
+/**
+ * Print the entire classlist
+ *
+ */
 void ClassList::printClassList() {
 	cout << this->name << endl;
 	cout << "Size:  " << courses.size() << endl;
@@ -92,14 +126,19 @@ void ClassList::printClassList() {
 	}
 }
 
+/**
+ * Returns the name of course maping to the course number
+ *
+ * @return name of course
+ * @param number of ourse
+ */
 string ClassList::getCourseName(int courseNumber) {
 	string className = "";
-		int classNum = 0;
-
+	int classNum = 0;
 
 	for (auto it = courses.begin(); it != courses.end(); ++it) {
 
-		classNum= it->first;
+		classNum = it->first;
 		className = it->second.first;
 
 		if (courseNumber == classNum) {
@@ -113,38 +152,39 @@ string ClassList::getCourseName(int courseNumber) {
 
 /**
  * OutsideClassList Constructor that Loads classlist info from file
+ *
+ * @param name
  */
 OutsideClassList::OutsideClassList(string name) :
 		ClassList(name) {
 }
 
 /**
- * Print the entire classlist.
- * printClassList() should still display the entire classlist, but since we no longer have credit counts
- * we'll want to reimplement this method to just show the course numbers and names.
+ * Print the entire classlist..
  */
 void OutsideClassList::printClassList() {
 
-
 	cout << this->name << endl;
 	cout << "Size:  " << courses.size() << endl;
-		string className = "";
-		int classNum = 0;
+	string className = "";
+	int classNum = 0;
 
-		for (auto it = courses.begin(); it != courses.end(); ++it) {
-			className = it->second.first;
-			classNum = it->first;
-			cout << " " << className << "	" << classNum << "	" << endl;
-		}
+	for (auto it = courses.begin(); it != courses.end(); ++it) {
+		className = it->second.first;
+		classNum = it->first;
+		cout << " " << className << "	" << classNum << "	" << endl;
+	}
 }
 
 /**
  * Print the classes that transfer with their equivalents
+ *
+ *@param cl classlist
  */
 void OutsideClassList::printClassList(ClassList& cl) {
 	string className = "";
 	int classNum, outsideClassNum = 0;
-	string outsideClassName ="";
+	string outsideClassName = "";
 
 	cout << this->name << endl;
 	cout << "Size:  " << courses.size() << endl;
@@ -155,17 +195,14 @@ void OutsideClassList::printClassList(ClassList& cl) {
 		classNum = this->getCourseEquivalent(outsideClassNum);
 		className = cl.getCourseName(classNum);
 
-
-
-
 // Print UW course num, UW Course name, outside course name
 		// if classNum ==0, dont print
 
-				if (classNum != 0) {
-			cout << classNum<< " " << className << " "  << outsideClassName << endl;
+		if (classNum != 0) {
+			cout << classNum << " " << className << " " << outsideClassName
+					<< endl;
 
 		}
-
 
 	}
 }
@@ -173,6 +210,8 @@ void OutsideClassList::printClassList(ClassList& cl) {
 /**
  * Get the equivalent course
  * pass it a reference to the UW-Madison list and display the outside classes that have UW-Madison equivalents
+ *
+ * @param courseNumber
  */
 int OutsideClassList::getCourseEquivalent(int courseNumber) {
 	int classNum, outsideClassNum = 0;
@@ -180,12 +219,10 @@ int OutsideClassList::getCourseEquivalent(int courseNumber) {
 		classNum = it->second.second;
 		outsideClassNum = it->first;
 
-
-		if(courseNumber == outsideClassNum){
+		if (courseNumber == outsideClassNum) {
 
 //			cout << "MATCH FOUND FOR: " << outsideClassNum << " => " << classNum << endl;
 			return classNum;
-
 
 		}
 	}
@@ -197,13 +234,19 @@ int OutsideClassList::getCourseEquivalent(int courseNumber) {
  * Constructor class that loads student info from file
  *
  * Functions identically to the super class constructor, except that it also fills in the new field.
+ *
+ * @param name of the stsudent
+ * @param name of the school
  */
-//StudentWithTransferCredit::StudentWithTransferCredit(std::string name,
-//		std::string schoolName) {
-//	//TODO: must implement
-//}
+StudentWithTransferCredit::StudentWithTransferCredit(string name,
+		string schoolName) :
+		Student(name) {
+	this->schoolName = schoolName;
+}
 /**
  * Return name of student's former school
+ *
+ * @return name of the school
  */
 std::string StudentWithTransferCredit::getSchoolName() {
 	return this->schoolName;
@@ -215,56 +258,78 @@ std::string StudentWithTransferCredit::getSchoolName() {
  * The internal record within a StudentWithTransferCredit instance has their grades matched to the course
  *  numbers from their old school. printStudent() should figure out which entries have a matching course
  *  in the newSchool ClassList and display only those courses, along with the corresponding grades.
+ *
+ * @param oldSchool classlist of old school
+ *  *@param newSchool classlist of new school
  */
 void StudentWithTransferCredit::printStudent(OutsideClassList& oldSchool,
 		ClassList& newSchool) {
-	//TODO: must implement
+
+	cout << "New student's name is: " << this->name << endl;
+//	cout << this->schoolName<< endl;
+
+	string grade, className = "";
+	int outsideClassNum = 0;
+	for (auto it = grades.begin(); it != grades.end(); ++it) {
+		grade = it->second;
+		outsideClassNum = it->first;
+		className = newSchool.getCourseName(
+				oldSchool.getCourseEquivalent(outsideClassNum));
+
+//		if(courseNumber == outsideClassNum){
+		if (className != "")
+			cout << " " << className << ": " << grade << endl;
+//			return classNum;
+
+//		}
+	}
+
 }
 
 /**
  * Driver method for the application
  *
- * In your main method, ask for the "new" classlist and print it. Then ask for the "old" outsideclasslist
- * and print it twice (first using the no-parameter print and then using the "new" classlist as a parameter).
- * Finally, ask for the name of a student-with-transfer-credit and print that student's class record using
- * the "old" and "new" classlists above.
  */
 int main() {
 
 	std::string classListName;
 	std::string outsideClassListName;
+	std::string transferStudent;
 
 	//TEST VARS
-	classListName= "UWMadison";
-	outsideClassListName = "TestSchool";
+//	classListName = "UWMadison";
+//	outsideClassListName = "TestSchool";
+//	transferStudent = "TestTransferStudent";
 
-
+	//	ask for classlist
 	cout << "WELCOME TO THE PREREQ-CHECKER" << endl;
 	cout << "Classlist: ";
-//	cin >> classListName;
-
+	cin >> classListName;
 
 	//Print classlist name
 	ClassList classL = ClassList(classListName);
 	classL.printClassList();
 
+	//	ask for outsideclasslist
 	cout << "Classlist: ";
-//	cin >> outsideClassListName;
-
+	cin >> outsideClassListName;
 
 	//Print outside classlist name
 	OutsideClassList outClass = OutsideClassList(outsideClassListName);
 	outClass.printClassList();
 	outClass.printClassList(classL);
 
-//	ClassList("UWMadison").printClassList();
+//	ask for transferstudent
+	cout << "Name of student: ";
+	cin >> transferStudent;
 
-//	ClassList("UWMadison").getCourseName(520);
+//	print transferstudent"
+	StudentWithTransferCredit transferStu = StudentWithTransferCredit(
+			transferStudent, outsideClassListName);
+	transferStu.printStudent(outClass, classL);
 
-//	Student("TestStudent").printStudent(classL);
-
-//	OutsideClassList outClass = OutsideClassList("TestSchool");
+//Student testS = Student("TestStudent");
 //
-//	outClass.printClassList();
+//testS.printStudent(classL);
 
 }
